@@ -2,6 +2,8 @@
 import useFetchapi from "@/hooks/user/useFetchapi";
 import { Grid, Card, CardContent, Paper, Button } from "@mui/material";
 import Link from "next/link";
+import UserCard from "@/component/user/UserCard";
+import UserChildren from "@/component/user/UserChildren";
 
 const Page = () => {
   const { member } = useFetchapi("https://jsonplaceholder.typicode.com/todos");
@@ -13,17 +15,7 @@ const Page = () => {
           {member?.map((value, index) => {
             return (
               <Grid item lg={4} key={index}>
-                <Card style={{ backgroundColor: "Highlight" }}>
-                  <CardContent>
-                    <p>{value.title}</p>
-                    <p>{value.userId}</p>
-                    <Link href={`/user/${value.id}`}>
-                      <Button variant="outlined" color="primary">
-                        ดูข้อมูล
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
+                <UserCard title="เบ้นหรอง" content={value.title} userid={value.userId} imgsrc={`https://images.scrolller.com/pico/morning-run-tokidoki-bosotto-russia-go-de-dereru-ca8fsu5itv-1507x1080.jpg`}/>
               </Grid>
             );
           })}

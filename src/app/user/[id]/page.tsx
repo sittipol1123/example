@@ -7,7 +7,7 @@ import { Button, CardActionArea, CardActions, Paper } from "@mui/material";
 
 import useFetchuser from "@/hooks/user/useFetchuser";
 
-const Page = () => {
+const Showuser = () => {
   const { detail } = useFetchuser("https://jsonplaceholder.typicode.com/todos");
 
   return (
@@ -44,4 +44,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Showuser;

@@ -1,7 +1,14 @@
-import React from 'react';
+import React from "react";
 
-export default function Test() {
+interface Props {
+  children: string | JSX.Element | JSX.Element[];
+}
+
+export default function Test({ children }: Props) {
   return (
-    <div>Test import component</div>
-  )
+    <div>
+      <div>Test import component</div>
+      {children}
+    </div>
+  );
 }
