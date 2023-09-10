@@ -38,7 +38,7 @@ const UserCard = ({
       <CardActions>
         <Link href={`user/${userid}`}>
           <Button size="small" color="primary">
-            ดูข้อมูล
+            ดูข้อมูล {userid}
           </Button>
         </Link>
         <Button size="small" color="error">

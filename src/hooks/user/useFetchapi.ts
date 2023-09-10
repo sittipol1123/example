@@ -9,12 +9,14 @@ export interface Member {
 
 const useFetchapi = (url: string) => {
   const [member, setMember] = useState<Member[] | []>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchdata = async () => {
     const res = await fetch(url);
     const json = await res.json();
 
     setMember(json);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -23,6 +25,7 @@ const useFetchapi = (url: string) => {
 
   return {
     member,
+    loading,
   }
 
 };

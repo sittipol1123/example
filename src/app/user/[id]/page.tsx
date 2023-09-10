@@ -3,29 +3,44 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { Skeleton } from "@mui/material";
 import { Button, CardActionArea, CardActions, Paper } from "@mui/material";
 
 import useFetchuser from "@/hooks/user/useFetchuser";
 
 const Showuser = () => {
-  const { detail } = useFetchuser("https://jsonplaceholder.typicode.com/todos");
+  const { detail, loading } = useFetchuser(
+    "https://jsonplaceholder.typicode.com/todos"
+  );
 
   return (
     <Paper>
       <Card sx={{ maxWidth: 345 }}>
         <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://images.scrolller.com/pico/morning-run-tokidoki-bosotto-russia-go-de-dereru-ca8fsu5itv-1507x1080.jpg"
-          />
+          {loading ? (
+            <Skeleton
+              sx={{ height: 190 }}
+              animation="wave"
+              variant="rectangular"
+            />
+          ) : (
+            <CardMedia
+              component="img"
+              height="140"
+              image="https://static.wikia.nocookie.net/roshidere/images/b/bf/Alisa_Mikhailovna_Kujo_Bio.png"
+            />
+          )}
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               title
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {detail.title}
-            </Typography>
+            {loading ? (
+              <Skeleton />
+            ) : (
+              <Typography variant="body2" color="text.secondary">
+                {detail.title}
+              </Typography>
+            )}
           </CardContent>
         </CardActionArea>
         <CardActions>
