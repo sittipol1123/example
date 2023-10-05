@@ -8,6 +8,7 @@ export default function Home() {
 
   return (
     <Paper>
+      <h1>in page</h1>
       <p>in state value is: {message}</p>
       <br />
       <a href="/user">กดเพื่อเปลี่ยนหน้า</a>

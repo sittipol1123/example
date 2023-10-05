@@ -41,27 +41,27 @@ const readFile = (
 
 };
 
-export const POST = async (req: NextApiRequest) => {
-  try {
-    await fs.readdir(path.join(process.cwd() + "/public", "/uploads"));
-  } catch (error) {
-    await fs.mkdir(path.join(process.cwd() + "/public", "/uploads"));
-  }
-  const { fields, files } = await readFile(req, true);
-  return NextResponse.json({ message: "sss" });
+export const POST = async (req: Request) => {
   // try {
-  //   const { title, content } = await req.json();
-  //   const result = await prisma.test.create({
-  //     data: {
-  //       data: JSON.stringify({ title, content }),
-  //     },
-  //   });
-  //   if (result) {
-  //     return NextResponse.json({ message: "ok", datais: [title, content] });
-  //   } else {
-  //     return NextResponse.json({ message: "error", datais: [title, content] });
-  //   }
+  //   await fs.readdir(path.join(process.cwd() + "/public", "/uploads"));
   // } catch (error) {
-  //   console.log(error);
+  //   await fs.mkdir(path.join(process.cwd() + "/public", "/uploads"));
   // }
+  // const { fields, files } = await readFile(req, true);
+  // return NextResponse.json({ message: "sss" });
+  try {
+    const { title, content } = await req.json();
+    const result = await prisma.test.create({
+      data: {
+        data: JSON.stringify({ title, content }),
+      },
+    });
+    if (result) {
+      return NextResponse.json({ message: "ok", datais: [title, content] });
+    } else {
+      return NextResponse.json({ message: "error", datais: [title, content] });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
